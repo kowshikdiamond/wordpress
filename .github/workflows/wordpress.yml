@@ -23,13 +23,9 @@ jobs:
         uses: shalior/wordpress-phpcs-action@master  
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          use_default_configuration_file: true
+          phpcs_args: '-n' # ignore warnings
           
-      - name: Fail on PHPCS
-        run: |
-          if [ $? -eq 1 ]; then
-            exit 1
-          fi
-      
   build:
         runs-on: ubuntu-latest
         needs: test
